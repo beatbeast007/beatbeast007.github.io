@@ -60,14 +60,39 @@ body::before {
     transform: translateX(0) !important;
 }
 
-/* Profile Image */
 .profile-image {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     border: 3px solid #0f0; /* Green border */
+    object-fit: cover; /* Preserve aspect ratio */
+    position: relative;
+    overflow: hidden;
 }
 
+.profile-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, #0f0, transparent);
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.profile-image:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
 /* Headings */
 h1, h2 {
     color: #0f0; /* Green text */
@@ -83,6 +108,28 @@ h1, h2 {
     60% { transform: translate(2px, 2px); }
     80% { transform: translate(2px, -2px); }
     100% { transform: translate(0); }
+}
+
+/* Preserve green color for email and phone links */
+a[href^="mailto:"], a[href^="tel:"] {
+    color: #0f0; /* Green color */
+    text-decoration: none; /* Remove underline */
+}
+
+a[href^="mailto:"]:hover, a[href^="tel:"]:hover {
+    text-shadow: 0 0 5px #0f0; /* Glow effect on hover */
+    text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Preserve green color for email link */
+a[href^="mailto:"] {
+    color: #0f0; /* Green color */
+    text-decoration: none; /* Remove underline */
+}
+
+a[href^="mailto:"]:hover {
+    text-shadow: 0 0 5px #0f0; /* Glow effect on hover */
+    text-decoration: underline; /* Optional: Add underline on hover */
 }
 
 /* Social Links */
@@ -105,4 +152,53 @@ ul {
 
 ul li {
     margin: 10px 0;
+}
+
+/* Increase base font size */
+body {
+    font-size: 18px; /* Increased from default */
+}
+
+/* Increase heading sizes */
+h1 {
+    font-size: 3rem; /* Increased from default */
+}
+
+h2 {
+    font-size: 2.5rem; /* Increased for sections */
+}
+
+p {
+    font-size: 1.4rem; /* Increased paragraph size */
+}
+
+ul li {
+    font-size: 1.4rem; /* Increase font size for lists */
+}
+
+/* Increase Social Links Size */
+.social-links a {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p, ul li {
+        font-size: 1.2rem;
+    }
+
+    .social-links a {
+        font-size: 1.3rem;
+    }
 }
