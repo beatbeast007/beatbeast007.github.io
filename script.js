@@ -1,9 +1,8 @@
-// Optimized JavaScript for Section Animations
 document.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('.section');
     const windowHeight = window.innerHeight;
 
-    sections.forEach(section => {
+    sections.forEach((section, index) => {
         const sectionTop = section.getBoundingClientRect().top;
         const sectionBottom = section.getBoundingClientRect().bottom;
 
